@@ -1,12 +1,12 @@
 from django.db import models
+from account.models import Users
 
 class Comment(models.Model):
-        email = models.CharField(max_length = 50)
-        comment = models.CharField(max_length = 300)
+        username = models.ForeignKey(Users, on_delete = models.SET_NULL, null=True)
+        comment = models.TextField()
         created_at = models.DateTimeField(auto_now_add = True)
         updated_at = models.DateTimeField(auto_now = True)
 
-        objects = models.Manager()
 	
         class Meta:
                 db_table = 'comment'
